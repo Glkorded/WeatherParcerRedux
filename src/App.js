@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SingleCitySearch from "./containers/SingleCitySearch";
+import { Route, Switch } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import DetailedCitySearch from "./containers/DetailedCitySearch";
+import Favourites from "./containers/Favourites";
+import styled from "styled-components";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const Background = styled.div`
+    display: flex;
+    background: #edeef0;
+    background-repeat: repeat;
+    height: 947px;
+    width: auto;
+  `;
+
+const App = () => {
+  return (
+    <Background imgSrc={"../images/background.jpg"}>
+      <Navigation />
+      <Switch>
+        <Route exact path="/" component={SingleCitySearch} />
+        <Route path="/favourites/" exact component={Favourites} />
+        <Route
+          path="/detailed_search/:cityId"
+          exact
+          component={DetailedCitySearch}
+        />
+      </Switch>
+    </Background>
+  );
+};
 
 export default App;
